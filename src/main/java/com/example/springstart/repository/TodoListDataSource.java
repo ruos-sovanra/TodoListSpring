@@ -12,6 +12,7 @@ public class TodoListDataSource {
     @Bean
     public List<Todo> todoList() {
         List<Todo> todos = new ArrayList<>();
+
         // Add more todos if needed
         return todos;
     }
