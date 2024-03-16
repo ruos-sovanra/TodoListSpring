@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Todo List</title>
+</head>
+<body>
+<h1>Todo List</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Task</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Created At</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="todo : ${todos}">
+        <td th:text="${todo.id}"></td>
+        <td th:text="${todo.task}"></td>
+        <td th:text="${todo.description}"></td>
+        <td th:text="${todo.done} ? 'Completed' : 'Pending'"></td>
+        <td th:text="${todo.createdAt}"></td>
+        <td>
+            <a th:href="@{/todo/{id}(id=${todo.id})}">Details</a>
+            <a th:href="@{/todo/edit/{id}(id=${todo.id})}">Edit</a>
+            <a th:href="@{/todo/delete/{id}(id=${todo.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+<a href="/todo/new">Add New Todo</a>
+<form action="/todo/search" method="get">
+    <input type="text" name="task" placeholder="Search by task">
+    <select name="isDone">
+        <option value="default" selected>Default</option>
+        <option value="complete">Complete</option>
+        <option value="pending">Pending</option>
+    </select>
+    <button type="submit">Search</button>
+</form>
+
+</body>
+</html>
